@@ -2,57 +2,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lab 4</title>
+<title>Lab4</title>
 <style>
-#main a {
-	font: 1.5em/1.2 Tahoma, Geneva, sans-serif; 
-	color:green; 
-	margin:.5em;
-	
-	}
-#pic {width:400px; height:300px;}
+	#main a {
+		font: 1.5em/1.2 Tahoma, Geneva, sans-serif; 
+		color:green; 
+		margin:.5em;
 
-#caption {font: 1.5em/1.2 Tahoma, Geneva, sans-serif;}
+	}
+	#pic {width:400px; height:300px;}
+
+	#caption {font: 1em/1.2 Tahoma, Geneva, sans-serif; }
+	.hide {display:none;}
 </style>
 </head>
 
 <body>
-
-	<nav id="main">
-    	<a href="images/frog1.jpg" title="My First Frog">Frog1</a>
-        <a href="images/frog2.jpg" title="My Second Frog">Frog2</a>
-        <a href="images/frog3.jpg" title="My Third Frog">Frog3</a>
+	<nav id="albums">
+    	<a href="#album1" title="Frogs">Frogs</a>
+        <a href="#album2" title="City">City</a>
+        <a href="#album3" title="Car">Cars</a>
     </nav>
-
-	<img id="pic" src="images/frog1.jpg" alt="Gallery Frog image" />
+    
+	<nav id="main">
+    
+    	<div id="album1">
+            <a href="images/frog1.jpg" title="My First Frog">Frog1</a>
+            <a href="images/frog2.jpg" title="My Second Frog">Frog2</a>
+            <a href="images/frog3.jpg" title="My Third Frog">Frog3</a>
+        </div>
+        
+        <div id="album2">
+            <a href="images/city1.jpg" title="My First City">City1</a>
+            <a href="images/city2.jpg" title="My Second City">City2</a>
+            <a href="images/city3.jpg" title="My Third City">City3</a>
+        </div>
+        
+        <div id="album3">
+            <a href="images/car1.jpg" title="My First Car">Car1</a>
+            <a href="images/car2.jpg" title="My Second Car">Car2</a>
+            <a href="images/car3.jpg" title="My Third Car">Car3</a>
+        </div>
+        
+    </nav>
+    
+    <img id="pic" src="images/frog1.jpg" alt="Gallery Frog image" />
     <p id="caption">My First Frog</p>
 
+
 <script>
-	
-	
+
 	var gallery = {
-	
+
 	 init: function(e)
-	{
+	{	
 		// collect all anchor tags inside of nav
-		// add event handler onto each of them 
+		// add event handler onto each of them
 		var links = document.querySelectorAll('#main a');
 		for(var i=0; i < links.length; i++)
 		{
 			links[i].onclick = gallery.changePic;
 		}
+
+		//setup links in albums nav
+		var albums = document.querySelectorAll('#albums a');
+		for(var j=0; j < albums.length; j++)
+		{
+			albums[j].onclick = gallery.changeAlbum;
+		}
+
+		//hide all the album divs
+		var divs = document.querySelectorAll('#main div');
+		for(var k=0; k < divs.length; k++)
+		{
+			divs[k].classList.add('hide');	
+		}
+
+		divs[0].classList.remove('hide');
 	},
-	
+
 	 changePic: function(e)
 	{
 		e.preventDefault();
 		var pic = document.querySelector('#pic');
 		var caption = document.getElementById('caption');
-		caption.firstChild.nodeValue = e.target.title;
 		pic.src = e.target.href;
+		caption.firstChild.nodeValue = e.target.title;
+	}, 
+
+	changeAlbum: function(e)
+	{
+		e.preventDefault();
+
+		//hide all the album divs
+		var divs = document.querySelectorAll('#main div');
+		for(var i=0; i < divs.length; i++)
+		{
+			divs[i].classList.add('hide');	
+		}
+
+		//show the selected album
 	}
-	
+
 }
+
 window.onload = gallery.init;
 </script>
 </body>
