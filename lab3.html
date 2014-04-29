@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h1>My Library</h1>
+
+
+<script>
+
+function Book(title, author, pubDate)
+{
+    this.title = title;
+    this.author = author;
+    this.pubDate = pubDate;
+    this.goPage = function() {
+         //displays request page   
+    }
+    this.displayBook = function() {
+    
+        var book_title = document.createElement('p');
+        book_title.innerText = this.title;
+        document.body.appendChild(book_title);
+
+        var book_author = document.createElement('p');
+        book_author.innerText = this.author;
+        document.body.appendChild(book_author);
+
+        var book_pubDate = document.createElement('p');
+        book_pubDate.innerText = this.pubDate;
+        document.body.appendChild(book_pubDate);
+
+    }
+}
+
+var scriptin = new Book('scriptin with JS', 'Wykes', '2010');
+scriptin.displayBook();
+
+var myBook = new Book('The Life of Robert M. Lewis', 'Lewis', '2015');
+myBook.displayBook();
+
+
+
+</script>
+
+</body>
+</html>
