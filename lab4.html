@@ -33,9 +33,9 @@
         </div>
         
         <div id="album2">
-            <a href="images/city1.jpg" title="My First City">City1</a>
-            <a href="images/city2.jpg" title="My Second City">City2</a>
-            <a href="images/city3.jpg" title="My Third City">City3</a>
+            <a href="images/city1.jpg" title="Atlanta, Georgia">City1</a>
+            <a href="images/city2.jpg" title="Savannah, Georgia">City2</a>
+            <a href="images/city3.jpg" title="New York City, New York">City3</a>
         </div>
         
         <div id="album3">
@@ -100,8 +100,17 @@
 		{
 			divs[i].classList.add('hide');	
 		}
-
+		
 		//show the selected album
+		var album = e.target.href.split('#')[1];
+		document.getElementById(album).classList.remove('hide');
+		
+		//change the pic to first image in album
+		var pic = document.querySelector('#pic');
+		var caption = document.getElementById('caption');
+		var firstPic = document.getElementById(album).querySelectorAll('a')[0];
+		pic.src = firstPic.href;
+		caption.firstChild.nodeValue = firstPic.title;
 	}
 
 }
