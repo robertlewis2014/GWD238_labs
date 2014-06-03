@@ -14,7 +14,7 @@
   <?php include('includes/header.php'); ?>
   
   <?php require_once('includes/sidebar1.php'); ?>
-  
+      
   <article class="content">
     <h1>Instructions</h1>
     <section>
